@@ -17,13 +17,35 @@
             <section class="contact-form-section">
             
                 <form novalidate>
-                    
+                    <div class="form-group">
+                        <label for="FirstName" class="form-label">First Name</label>
+                        <input id="FirstName" class="form-input" type="text" />
+                        <span class="field-validation field-validation-error">First name is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="form-label">Email Address</label>
+                        <input id="Email" class="form-input" type="email" placeholder="name@example.com" />
+                        <span class="field-validation field-validation-error">Email address is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="Phone" class="form-label">Phone Number</label>
+                        <input id="Phone" class="form-input" type="tel" placeholder="Format: 070-123 45 67" />
+                        <span class="field-validation field-validation-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Message" class="form-label">Message</label>
+                        <textarea id="Message" class="form-textarea" placeholder="Message"></textarea>
+                        <span class="field-validation field-validation-error"></span>
+                    </div>
+
+
                     <div class="form-checkbox-group">
                         <label class="form-checkbox">
-                            <input id="terms" class="form-checkbox-input" type="checkbox" />
+                            <input id="TermsAndConditions" class="form-checkbox-input" type="checkbox" />
                             <span class="form-checkbox-checkmark"></span>
                         </label>
-                        <label class="form-checkbox-label" for="terms">I accept the terms and conditions for this website.</label>
+                        <label class="form-checkbox-label" for="TermsAndConditions">I accept the terms and conditions for this website.</label>
                         <span class="field-validation field-validation-error">You must accept the terms and conditions</span>
                     </div>
                 </form>

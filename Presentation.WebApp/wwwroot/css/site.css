@@ -1,3 +1,65 @@
+:root {
+    /* fonts */
+    --font-default: "DM Sans", sans-serif;
+    --font-heading: "Poppins", sans-serif;
+    --font-fa-regular: "Font Awesome 7 Pro Regular";
+    --font-fa-solid: "Font Awesome 7 Pro Solid";
+    /* color scheme */
+    --transparent: transparent;
+    --primary-color: #d9eb33;
+    --dark-color: #27252f;
+    --gray-color: #6f6f6f;
+    --light-gray-color: #a7a7a7;
+    --light-color: #f7f7f7;
+    --white-color: #ffffff;
+    --danger-color: #ce2b2baf;
+    /* body */
+    --body-bg-color: var(--light-color);
+    --body-text-color: var(--dark-color);
+    /* form */
+    --form-border-color: var(--transparent);
+    --form-bg-color: var(--transparent);
+    --form-text-color: var(--dark-color);
+    --form-validation-error-text-color: var(--danger-color);
+    --form-input-border-color: var(--light-color);
+    --form-input-bg-color: var(--light-color);
+    --form-input-text-color: var(--dark-color);
+    --form-input-placeholder-color: var(--light-gray-color);
+    --form-input-focus-border-color: var(--gray-color);
+    --form-checkbox-text-color: var(--dark-color);
+    --form-checkbox-bg-color: var(--light-color);
+    --form-checkbox-border-color: var(--light-color);
+    --form-checkbox-checked-text-color: var(--dark-color);
+    --form-checkbox-checked-bg-color: var(--primary-color);
+    --form-checkbox-checked-border-color: var(--primary-color);
+    /* contact-form */
+    --contact-form-bg-color: var(--white-color);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    font-family: var(--font-default);
+    line-height: 1.5;
+}
+
+/* layouts */
+.app-layout {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100dvh;
+    padding: 1rem;
+}
+
+/* menu */
 .menu {
     display: flex;
     align-items: center;
@@ -5,4 +67,163 @@
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+
+/* forms */
+form {
+    border: 1px solid var(--form-border-color);
+    background-color: var(--form-bg-color);
+    color: var(--form-text-color);
+
+    .form-group {
+        display: grid;
+        gap: 0.5rem;
+    }
+
+    .form-checkbox-group {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "check label" "na error";
+        column-gap: 1rem;
+        row-gap: 0.3rem;
+
+        .form-checkbox {
+            grid-area: check;
+        }
+
+        .form-checkbox-label {
+            grid-area: label;
+        }
+
+        .field-validation {
+            grid-area: error;
+            padding: 0;
+        }
+    }
+
+    .form-checkbox-input,
+    input[type="checkbox"] {
+        display: none;
+
+        &:checked + .form-checkbox-checkmark {
+            border: 1px solid var(--form-checkbox-checked-border-color);
+            background-color: var(--form-checkbox-checked-bg-color);
+            color: var(--form-checkbox-checked-text-color);
+        }
+
+            &:checked + .form-checkbox-checkmark::after {
+                opacity: 1;
+            }
+    }
+
+    .form-checkbox-checkmark {
+        cursor: pointer;
+        border: 1px solid var(--form-checkbox-border-color);
+        background-color: var(--form-checkbox-bg-color);
+        color: var(--form-checkbox-text-color);
+        height: 25px;
+        width: 25px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        &::after {
+            content: "\f00c";
+            font-family: var(--font-fa-solid);
+            font-size: 0.8em;
+            opacity: 0;
+        }
+    }
+
+
+    .form-label {
+        font-size: 0.9em;
+        font-weight: 600;
+        font-family: var(--font-heading);
+    }
+
+    .form-input,
+    .form-textarea {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 0.625rem;
+        font-size: 1em;
+        font-weight: 400;
+        font-family: var(--font-default);
+        outline: none;
+        border: 1px solid var(--form-input-border-color);
+        background-color: var(--form-input-bg-color);
+        color: var(--form-input-text-color);
+
+        &::placeholder {
+            font-size: 1em;
+            color: var(--form-input-placeholder-color);
+        }
+
+        &:focus {
+            border: 1px solid var(--form-input-focus-border-color);
+        }
+    }
+
+    .form-textarea {
+        resize: none;
+    }
+
+    .field-validation {
+        font-size: 0.8em;
+        padding-inline: 1rem;
+    }
+
+    .input-validation-error,
+    .field-validation-error {
+        color: var(--form-validation-error-text-color);
+    }
+}
+
+/* contact-form section */
+.contact-form-section {
+    background-color: var(--contact-form-bg-color);
+    padding: 1rem;
+
+    #contact-form {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: "firstname" "lastname" "email" "phone" "message";
+        gap: 1.5rem;
+
+        @media (width >= 768px) {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "firstname lastname" "email phone" "message message";
+        }
+
+        [data-id="firstname"] {
+            grid-area: firstname;
+        }
+
+        [data-id="lastname"] {
+            grid-area: lastname;
+        }
+
+        [data-id="email"] {
+            grid-area: email;
+        }
+
+        [data-id="phone"] {
+            grid-area: phone;
+        }
+
+        [data-id="message"] {
+            grid-area: message;
+        }
+    }
+
+    .form-group {
+        margin-bottom: 0.5rem;
+
+        @media (width >= 768px) {
+            margin-bottom: 1rem;
+        }
+    }
 }
